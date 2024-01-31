@@ -6,6 +6,7 @@ const indexSections = [
 
 const files = ['index'/*, 'index-open-sans', 'index-inter'*/]
 
+const referencePath = `${__dirname}/reference/`;
 
 module.exports = {
   "id": "olympic-test-pp",
@@ -33,16 +34,18 @@ module.exports = {
   },
   "scenarios": files.flatMap(file => [
     ...indexSections.map(({section, misMatchThreshold}) => ({
-      "label": `${section} ${file}`,
-      "url": `http://localhost:3000/${file}.html`,
+      label: `${section} ${file}`,
+      url: `http://localhost:3000/${file}.html`,
+      referenceUrl: `file:///${referencePath}${file}.html`,
       selectors: [`[data-test="${section}"]`],
       misMatchThreshold: misMatchThreshold || 5,
       requireSameDimensions: true,
       delay: 500
     })),
     ...indexSections.map(({section, misMatchThreshold}) => ({
-      "label": `${section} ${file} content overflow`,
-      "url": `http://localhost:3000/${file}.html`,
+      label: `${section} ${file} content overflow`,
+      url: `http://localhost:3000/${file}.html`,
+      referenceUrl: `file:///${referencePath}${file}-overflow.html`,
       selectors: [`[data-test="${section}"]`],
       misMatchThreshold: misMatchThreshold || 5,
       requireSameDimensions: true,
@@ -52,7 +55,7 @@ module.exports = {
   ]),
   fileNameTemplate: '{scenarioLabel}_{viewportLabel}',
   "paths": {
-    "bitmaps_reference": "bitmaps_reference/test-pp",
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
     "bitmaps_test": "backstop_data/bitmaps_test",
     "engine_scripts": "engine_scripts",
     "html_report": "backstop_data/html_report",
