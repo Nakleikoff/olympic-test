@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --open",
-    "test": "backstop test --config=pp.config.cjs",
+    "test": "npm run ref && backstop test --config=pp.config.cjs",
     "ref": "backstop reference --config=pp.config.cjs",
     "test-content": "vitest content.test.ts --ui",
     "build": "vite build --emptyOutDir",
