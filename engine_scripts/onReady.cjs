@@ -1,6 +1,6 @@
 module.exports = async (page, scenario, vp) => {
     console.log('SCENARIO > ' + scenario.label);
-  
+
     // add more ready handlers here...
     await page.waitForFunction(() => {
       return document.fonts.ready.then(() => {
@@ -8,9 +8,9 @@ module.exports = async (page, scenario, vp) => {
         return true;
       });
     });
-  
+
     // await require('./clickAndHoverHelper')(page, scenario);
-  
+
     if (scenario.showSelectors) {
       await Promise.all(
         scenario.showSelectors.map(async (selector) => {
@@ -23,5 +23,11 @@ module.exports = async (page, scenario, vp) => {
         })
       );
     }
+
+    await page.evaluate(() => {
+      if (window.devicePixelRatio !== 1){
+        let scaleValue = (1 / window.devicePixelRatio);
+        document.querySelector('body').style.transform = 'scale('+scaleValue+')';
+      }
+    })
   };
-  
