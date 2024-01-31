@@ -4,7 +4,7 @@ const indexSections = [
   {section: 'footer', misMatchThreshold: 1}
 ];
 
-const files = ['index', 'index-open-sans', 'index-inter']
+const files = ['index'/*, 'index-open-sans', 'index-inter'*/]
 
 
 module.exports = {
